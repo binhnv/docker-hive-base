@@ -1,0 +1,50 @@
+<!--
+    https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2
+-->
+<configuration>
+    <property>
+        <name>hive.server2.authentication</name>
+        <value>kerberos</value>
+    </property>
+    <property>
+        <name>hive.server2.authentication.kerberos.principal</name>
+        <value>{{ .Env.HIVE_USER }}/hive@{{ .Env.KRB_DEFAULT_REALM }}</value>
+    </property>
+    <property>
+        <name>hive.server2.authentication.kerberos.keytab</name>
+        <value>{{ .Env.KRB_SERVICE_KEYTAB_FILE }}</value>
+    </property>
+    <property>
+        <description>Impersonation - perform query as the user who submitted</description>
+        <name>hive.server2.enable.doAs</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hive.server2.logging.operation.log.location</name>
+        <value>{{ .Env.HIVE_LOG_DIR }}</value>
+    </property>
+    <property>
+        <name>fs.hdfs.impl.disable.cache</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>fs.file.impl.disable.cache</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>{{ .Env.HIVE_MS_CONNECTION }}</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>{{ .Env.HIVE_MS_DRIVER_NAME }}</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>{{ .Env.HIVE_MS_DB_USERNAME }}</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>{{ .Env.HIVE_MS_DB_PASSWORD }}</value>
+    </property>
+</configuration>
