@@ -47,4 +47,19 @@
         <name>javax.jdo.option.ConnectionPassword</name>
         <value>{{ .Env.HIVE_MS_DB_PASSWORD }}</value>
     </property>
+    {{ $enable_zk_discovery := default .Env.HIVE_ENABLE_ZOOKEEPER_DISCOVERY "false" }}
+    {{ if isTrue $enable_zk_discovery }}
+    <property>
+        <name>hive.zookeeper.quorum</name>
+        <value>{{ replace .Env.ZOOKEEPER_HOST "\"" "" -1 }}:2181</value>
+    </property>
+    <property>
+        <name>hive.server2.support.dynamic.service.discovery</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hive.server2.zookeeper.namespace</name>
+        <value>hiveserver2</value>
+    </property>
+    {{end}}
 </configuration>
