@@ -62,4 +62,8 @@
         <value>hiveserver2</value>
     </property>
     {{end}}
+    <property>
+        <name>hive.aux.jars.path</name>
+        <value>{{ .Env.HIVE_HOME }}/hcatalog/share/hcatalog</value>
+    </property>
 </configuration>
