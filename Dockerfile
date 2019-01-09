@@ -1,4 +1,4 @@
-FROM binhnv/hadoop-base
+FROM binhnv/hadoop-base:1.0.3
 MAINTAINER "Binh Van Nguyen<binhnv80@gmail.com>"
 
 ENV HIVE_VERSION="1.2.1" \
